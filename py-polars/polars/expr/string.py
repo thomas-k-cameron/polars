@@ -736,7 +736,7 @@ class ExprStringNameSpace:
         ends_with : Check if string values end with a substring.
 
         """
-        pattern = parse_as_expression(pattern, str_as_lit=True)._pyexpr
+        pattern = parse_as_expression(pattern, str_as_lit=True)
         return wrap_expr(self._pyexpr.str_contains(pattern, literal, strict))
 
     def ends_with(self, suffix: str | Expr) -> Expr:
@@ -783,7 +783,7 @@ class ExprStringNameSpace:
         starts_with : Check if string values start with a substring.
 
         """
-        suffix = parse_as_expression(suffix, str_as_lit=True)._pyexpr
+        suffix = parse_as_expression(suffix, str_as_lit=True)
         return wrap_expr(self._pyexpr.str_ends_with(suffix))
 
     def starts_with(self, prefix: str | Expr) -> Expr:
@@ -830,7 +830,7 @@ class ExprStringNameSpace:
         ends_with : Check if string values end with a substring.
 
         """
-        prefix = parse_as_expression(prefix, str_as_lit=True)._pyexpr
+        prefix = parse_as_expression(prefix, str_as_lit=True)
         return wrap_expr(self._pyexpr.str_starts_with(prefix))
 
     def json_extract(self, dtype: PolarsDataType | None = None) -> Expr:
@@ -1134,7 +1134,7 @@ class ExprStringNameSpace:
         └────────────────┘
 
         '''
-        pattern = parse_as_expression(pattern, str_as_lit=True)._pyexpr
+        pattern = parse_as_expression(pattern, str_as_lit=True)
         return wrap_expr(self._pyexpr.str_extract_all(pattern))
 
     def count_match(self, pattern: str) -> Expr:
@@ -1410,8 +1410,8 @@ class ExprStringNameSpace:
         └─────┴────────┘
 
         """
-        pattern = parse_as_expression(pattern, str_as_lit=True)._pyexpr
-        value = parse_as_expression(value, str_as_lit=True)._pyexpr
+        pattern = parse_as_expression(pattern, str_as_lit=True)
+        value = parse_as_expression(value, str_as_lit=True)
         return wrap_expr(self._pyexpr.str_replace_n(pattern, value, literal, n))
 
     def replace_all(
@@ -1449,8 +1449,8 @@ class ExprStringNameSpace:
         └─────┴─────────┘
 
         """
-        pattern = parse_as_expression(pattern, str_as_lit=True)._pyexpr
-        value = parse_as_expression(value, str_as_lit=True)._pyexpr
+        pattern = parse_as_expression(pattern, str_as_lit=True)
+        value = parse_as_expression(value, str_as_lit=True)
         return wrap_expr(self._pyexpr.str_replace_all(pattern, value, literal))
 
     def slice(self, offset: int, length: int | None = None) -> Expr:

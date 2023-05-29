@@ -1715,7 +1715,7 @@ def fold(
     └─────┴─────┘
     """
     # in case of pl.col("*")
-    acc = parse_as_expression(acc, str_as_lit=True)._pyexpr
+    acc = parse_as_expression(acc, str_as_lit=True)
     if isinstance(exprs, pl.Expr):
         exprs = [exprs]
 
@@ -1856,7 +1856,7 @@ def cumfold(
 
     """  # noqa: W505
     # in case of pl.col("*")
-    acc = parse_as_expression(acc, str_as_lit=True)._pyexpr
+    acc = parse_as_expression(acc, str_as_lit=True)
     if isinstance(exprs, pl.Expr):
         exprs = [exprs]
 
@@ -2446,7 +2446,7 @@ def arg_where(condition: Expr | Series, *, eager: bool = False) -> Expr | Series
             )
         return condition.to_frame().select(arg_where(col(condition.name))).to_series()
     else:
-        condition = parse_as_expression(condition)._pyexpr
+        condition = parse_as_expression(condition)
         return wrap_expr(plr.arg_where(condition))
 
 

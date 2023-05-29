@@ -53,7 +53,7 @@ def _parse_regular_inputs(
     inputs = _inputs_to_list(inputs)
     if more_inputs:
         inputs.extend(more_inputs)
-    return [parse_as_expression(e, structify=structify)._pyexpr for e in inputs]
+    return [parse_as_expression(e, structify=structify) for e in inputs]
 
 
 def _inputs_to_list(inputs: IntoExpr | Iterable[IntoExpr] | None) -> list[IntoExpr]:
@@ -69,14 +69,17 @@ def _parse_named_inputs(
     named_inputs: dict[str, IntoExpr], structify: bool = False
 ) -> Iterable[PyExpr]:
     return (
-        parse_as_expression(input, structify=structify).alias(name)._pyexpr
+        parse_as_expression(input, structify=structify).alias(name)
         for name, input in named_inputs.items()
     )
 
 
 def parse_as_expression(
-    input: IntoExpr, *, str_as_lit: bool = False, structify: bool = False
-) -> Expr:
+    input: IntoExpr,
+    *,
+    str_as_lit: bool = False,
+    structify: bool = False,
+) -> PyExpr:
     """
     Parse a single input into an expression.
 
@@ -116,7 +119,7 @@ def parse_as_expression(
     if structify:
         expr = _structify_expression(expr)
 
-    return expr
+    return expr._pyexpr
 
 
 def _structify_expression(expr: Expr) -> Expr:
